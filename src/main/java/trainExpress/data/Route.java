@@ -2,37 +2,45 @@ package main.java.trainExpress.data;
 
 import main.java.trainExpress.data.trainStation.TrainStation;
 
-public class Route implements Comparable<Route>{
-	
+/**
+ * Route class contains information of a route from a station. Holds the train
+ * station destination and the duration of the journey to that destination.
+ * 
+ * @author Ilya
+ *
+ */
+public class Route {
+
 	private TrainStation destination;
 
 	private int duration;
-	
-	public Route(TrainStation destination, int duration){
+
+	/**
+	 * Creates a route with the destination and duration of the journey set.
+	 * 
+	 * @param destination
+	 * @param duration
+	 */
+	public Route(TrainStation destination, int duration) {
 		this.destination = destination;
 		this.duration = duration;
-		
+
 	}
-	
-	public TrainStation getDestination(){
+
+	public void setDestination(TrainStation destination) {
+		this.destination = destination;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public TrainStation getDestination() {
 		return this.destination;
 	}
-	
-	public int getDuration(){
-		return this.duration;
-	}
-	
 
-	@Override
-	public int compareTo(Route route) {
-		int compareValue = 0;;
-		
-		if(this.duration > route.getDuration()){
-			compareValue = 1;
-		} else if (this.duration < route.getDuration()){
-			compareValue = -1;
-		}
-		return compareValue;
+	public int getDuration() {
+		return this.duration;
 	}
 
 }

@@ -1,4 +1,4 @@
-package test.java.trainExpress; 
+package test.java.trainExpress;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,137 +11,145 @@ import main.java.trainExpress.TrainsExpress;
 import main.java.trainExpress.data.Route;
 import main.java.trainExpress.data.trainStation.TrainStation;
 
-
+/**
+ * Test class for the Train express application. Runs tests on all possible
+ * route combinations and asserts correct result is produced.
+ * 
+ * @author Ilya
+ *
+ */
 public class TrainExpressTest {
-	
+
 	TrainsExpress classUnderTest;
-	
+
 	List<TrainStation> stations;
-	
+
+	/**
+	 * Sets the train express up and initialises all the routes.
+	 */
 	@Before
-	public void setup(){
-		
+	public void setup() {
+
 		classUnderTest = new TrainsExpress();
 		stations = classUnderTest.initialiseStationsAndRoutes();
 	}
 
-	
 	@Test
-	public void testAtoB(){
+	public void testAtoB() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(0), stations.get(1));
 		assertEquals(3, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testAtoC(){
+	public void testAtoC() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(0), stations.get(2));
 		assertEquals(10, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testAtoD(){
+	public void testAtoD() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(0), stations.get(3));
 		assertEquals(6, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testAtoE(){
+	public void testAtoE() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(0), stations.get(4));
 		assertEquals(13, TrainsExpress.calculateRouteDuration(result));
 	}
-	
+
 	@Test
-	public void testBtoA(){
+	public void testBtoA() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(1), stations.get(0));
 		assertEquals(3, TrainsExpress.calculateRouteDuration(result));
 	}
-	
+
 	@Test
-	public void testBtoC(){
+	public void testBtoC() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(1), stations.get(2));
 		assertEquals(7, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testBtoD(){
+	public void testBtoD() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(1), stations.get(3));
 		assertEquals(9, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testBtoE(){
+	public void testBtoE() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(1), stations.get(4));
 		assertEquals(10, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testCtoA(){
+	public void testCtoA() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(2), stations.get(0));
 		assertEquals(16, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testCtoB(){
+	public void testCtoB() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(2), stations.get(1));
 		assertEquals(13, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testCtoD(){
+	public void testCtoD() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(2), stations.get(3));
 		assertEquals(8, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testCtoE(){
+	public void testCtoE() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(2), stations.get(4));
 		assertEquals(3, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testDtoA(){
+	public void testDtoA() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(3), stations.get(0));
 		assertEquals(8, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testDtoB(){
+	public void testDtoB() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(3), stations.get(1));
 		assertEquals(5, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testDtoC(){
+	public void testDtoC() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(3), stations.get(2));
 		assertEquals(9, TrainsExpress.calculateRouteDuration(result));
 	}
-	
+
 	@Test
-	public void testDtoE(){
+	public void testDtoE() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(3), stations.get(4));
 		assertEquals(9, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testEtoA(){
+	public void testEtoA() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(4), stations.get(0));
 		assertEquals(17, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testEtoB(){
+	public void testEtoB() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(4), stations.get(1));
 		assertEquals(14, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testEtoC(){
+	public void testEtoC() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(4), stations.get(2));
 		assertEquals(18, TrainsExpress.calculateRouteDuration(result));
 	}
 
 	@Test
-	public void testEtoD(){
+	public void testEtoD() {
 		List<Route> result = classUnderTest.getFastestRroute(stations.get(4), stations.get(3));
 		assertEquals(9, TrainsExpress.calculateRouteDuration(result));
 	}
