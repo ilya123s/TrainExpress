@@ -62,10 +62,10 @@ public class TrainExpress {
 		// Clear the existing list of any routes.
 		fastestRoute = new ArrayList<>();
 
-		// Find the quickest route from origin to destination. Since we haven't
+		// Find the fastest route from origin to destination. Since we haven't
 		// visited any other stations we don't have any visited stations or
-		// routes to pass to the find quickest route methods.
-		findQuickestRoute(origin, destination, new ArrayList<>(), new ArrayList<>());
+		// routes to pass to the find fastest route method.
+		findFastestRoute(origin, destination, new ArrayList<>(), new ArrayList<>());
 
 		if (fastestRoute.isEmpty()) {
 			return null;
@@ -84,7 +84,7 @@ public class TrainExpress {
 	 * @param visitedStations
 	 * @param calculatedRoute
 	 */
-	private void findQuickestRoute(TrainStation origin, TrainStation destination, List<TrainStation> visitedStations,
+	private void findFastestRoute(TrainStation origin, TrainStation destination, List<TrainStation> visitedStations,
 			List<Route> calculatedRoute) {
 
 		// Get the routes from this station and add the origin to the list of
@@ -130,7 +130,7 @@ public class TrainExpress {
 
 				// As the station destination of this route is not the one we
 				// want, check all of the routes from this station as well.
-				findQuickestRoute(routeDestination, destination, visitedStations, calculatedRoute);
+				findFastestRoute(routeDestination, destination, visitedStations, calculatedRoute);
 			}
 
 			// Once we have checked the route from the origin and calculated
