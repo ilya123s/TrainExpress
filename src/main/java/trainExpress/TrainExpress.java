@@ -7,39 +7,70 @@ import main.java.trainExpress.data.Route;
 import main.java.trainExpress.data.trainStation.TrainStation;
 import main.java.trainExpress.data.trainStation.impl.SimpleTrainStation;
 
-public class TrainsExpress {
+public class TrainExpress {
 
 	private List<Route> fastestRoute;
 
-	// public static void main(String[] args) {
-	// List<TrainStation> trainStations = initialiseStationsAndRoutes();
-	//
-	// List<Route> quickestRoute = findQuickestRoute(trainStations.get(1),
-	// trainStations.get(3),
-	// new ArrayList<TrainStation>());
-	// System.out.println("----");
-	// for (Route route : fastestRoute) {
-	// System.out.println(route.getDestination().getStationName() + " " +
-	// route.getDuration());
-	// }
-	// System.out.println(calculateRouteDuration(fastestRoute));
-	// System.out.println("----");
-	// for (Route route : quickestRoute) {
-	// System.out.println(route.getDestination().getStationName() + " " +
-	// route.getDuration());
-	// }
-	// }
+	/**
+	 * Creates a list of train stations and populates them with their routes.
+	 * 
+	 * @return List of initialised train stations and their respective routes.
+	 */
+	public List<TrainStation> initialiseStationsAndRoutes() {
+
+		List<TrainStation> trainStations = new ArrayList<>();
+		
+		//Create the stations with their names and empty route lists.
+		TrainStation a = new SimpleTrainStation("A", new ArrayList<Route>());
+		TrainStation b = new SimpleTrainStation("B", new ArrayList<Route>());
+		TrainStation c = new SimpleTrainStation("C", new ArrayList<Route>());
+		TrainStation d = new SimpleTrainStation("D", new ArrayList<Route>());
+		TrainStation e = new SimpleTrainStation("E", new ArrayList<Route>());
+
+		trainStations.add(a);
+		trainStations.add(b);
+		trainStations.add(c);
+		trainStations.add(d);
+		trainStations.add(e);
+		
+		//Create all the routes for the stations.
+		a.addRoute(new Route(b, 3));
+		a.addRoute(new Route(d, 6));
+		b.addRoute(new Route(a, 3));
+		b.addRoute(new Route(c, 7));
+		c.addRoute(new Route(d, 8));
+		c.addRoute(new Route(e, 3));
+		d.addRoute(new Route(e, 9));
+		d.addRoute(new Route(c, 9));
+		d.addRoute(new Route(b, 5));
+		e.addRoute(new Route(d, 9));
+
+		return trainStations;
+
+	}
 
 	/**
+	 * Finds the fastest route from the origin to the destination. If no route
+	 * is possible between the two stations, null is returned.
 	 * 
 	 * @param origin
 	 * @param destination
 	 * @return
 	 */
-	public List<Route> getFastestRroute(TrainStation origin, TrainStation destination) {
-		fastestRoute.clear();
+	public List<Route> getFastestRoute(TrainStation origin, TrainStation destination) {
+
+		// Clear the existing list of any routes.
+		fastestRoute = new ArrayList<>();
+
+		// Find the quickest route from origin to destination. Since we haven't
+		// visited any other stations we don't have any visited stations or
+		// routes to pass to the find quickest route methods.
 		findQuickestRoute(origin, destination, new ArrayList<>(), new ArrayList<>());
-		return this.fastestRoute;
+
+		if (fastestRoute.isEmpty()) {
+			return null;
+		}
+		return fastestRoute;
 	}
 
 	/**
@@ -139,38 +170,6 @@ public class TrainsExpress {
 			}
 		}
 		return totalDuration;
-	}
-
-	public List<TrainStation> initialiseStationsAndRoutes() {
-
-		List<TrainStation> trainStations = new ArrayList<>();
-		fastestRoute = new ArrayList<Route>();
-
-		TrainStation a = new SimpleTrainStation("A", new ArrayList<Route>());
-		TrainStation b = new SimpleTrainStation("B", new ArrayList<Route>());
-		TrainStation c = new SimpleTrainStation("C", new ArrayList<Route>());
-		TrainStation d = new SimpleTrainStation("D", new ArrayList<Route>());
-		TrainStation e = new SimpleTrainStation("E", new ArrayList<Route>());
-
-		trainStations.add(a);
-		trainStations.add(b);
-		trainStations.add(c);
-		trainStations.add(d);
-		trainStations.add(e);
-
-		a.addRoute(new Route(b, 3));
-		a.addRoute(new Route(d, 6));
-		b.addRoute(new Route(a, 3));
-		b.addRoute(new Route(c, 7));
-		c.addRoute(new Route(d, 8));
-		c.addRoute(new Route(e, 3));
-		d.addRoute(new Route(e, 9));
-		d.addRoute(new Route(c, 9));
-		d.addRoute(new Route(b, 5));
-		e.addRoute(new Route(d, 9));
-
-		return trainStations;
-
 	}
 
 }
